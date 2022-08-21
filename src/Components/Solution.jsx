@@ -11,19 +11,25 @@ const Solution = () => {
         let temp=[];//initialise an array to store the moves using the recursion func
         Solve(3,temp);//n,mov
         setmov([...temp]);//spread operator to update the prev values of moves
+
         settower({A:[4,3,2],B:[],C:[]})
     }
     const nextmove=()=>{
+
       if(moves.length>0){
       let tempmoves=[...moves];//it is for storing the values of moves so that it can be poped out
       let next=tempmoves.shift();//remove the first element and return it
       let temptower={...tower};//since it uses an object so {...} not[...] 
       let disk=temptower[next.from].pop();// ot is for remove disk from one tower
       temptower[next.to].push(disk);//push the removed disk in another tower
+  
 settower(temptower);
 setmov(tempmoves);
+
       }
     }
+    
+   
 
     //SINCE the disks are moving from the lowest point so to reverse the order of moving use a function with an arg of  no. of disks in each tower -(nd)
     //th is tower height if disks are less than tower height it will shows something in place of disks
@@ -75,8 +81,12 @@ return(
 </div>
 
 <div class="d-flex justify-content-center  ">
+<button type="button" className="btn btn-primary px-4 mx-5 my-2" onClick={nextmove}  >NEXT</button>
+
+</div>
+<div>
 <button type="button" className=" btn btn-success px-4 mx-5 my-2" onClick={handlemov}>SOLVE</button>
-<ul className='text-center' >
+<ul className='px-4 mx-5'>
 {moves.map( move => {
           return(
             <>
@@ -89,9 +99,7 @@ return(
             })
          }
          </ul>
-<button type="button" className="btn btn-primary px-4 mx-5 my-2" onClick={nextmove}  >NEXT</button>
-
-</div>
+ </div>
 <div>
 <Algo/>
 </div>
